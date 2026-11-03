@@ -77,7 +77,12 @@
       #survey-panel { top: auto; bottom: calc(max(12px, env(safe-area-inset-bottom)) + 114px); max-height: 48vh; max-width: calc(100% - 24px); }
       #system-panel { top: auto; bottom: calc(max(12px, env(safe-area-inset-bottom)) + 114px); max-height: 55vh; max-width: calc(100% - 24px); }
       #kitchen-panel { top: auto; bottom: calc(max(12px, env(safe-area-inset-bottom)) + 114px); max-height: 55vh; max-width: calc(100% - 24px); }
-      nav { max-height: 100px; overflow: auto; }
-      button { flex-basis: 105px; }
+      /* Phone fix: every bottom button is visible (3-column grid, no hidden scroll). */
+      nav { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; padding: 8px; max-height: none; overflow: visible; }
+      nav button { min-height: 38px; font-size: 11px; padding: 2px 4px; line-height: 1.15; }
+      /* Phone fix: panels sit just above the button grid and scroll inside themselves. */
+      aside.panel { top: auto !important; left: max(12px, env(safe-area-inset-left)) !important; right: max(12px, env(safe-area-inset-right)) !important; max-width: none !important;
+        bottom: calc(var(--lo-nav-h, 114px) + max(12px, env(safe-area-inset-bottom)) + 8px) !important;
+        max-height: calc(100vh - var(--lo-nav-h, 114px) - 40px) !important; overflow: auto; }
     }
   

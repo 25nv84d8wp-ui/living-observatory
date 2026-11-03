@@ -405,6 +405,31 @@
     publishPreflightState();
   }
 
+  // Phone fix: one missing model no longer stops the whole estate. The layer is marked
+  // 'error', a warning is shown, everything that does not need that layer keeps working,
+  // and asking for the layer again (e.g. ENTER PROPERTY / LOAD DÉCOR) retries it.
+  const layerErrors = {};
+  window.__LO_LAYER_ERRORS__ = layerErrors;
+  function layerFailed(name, message) {
+    const layer = layers[name];
+    if (layer) {
+      discardEmbeddedAsset(layer);
+      if (!layer.embedded && layer.asset) {
+        // A failed PlayCanvas asset cannot be reloaded; swap in a fresh one so a retry works.
+        app.assets.remove(layer.asset);
+        layer.asset = new pc.Asset('Living Observatory - ' + name, 'container', { url: layer.url });
+        app.assets.add(layer.asset);
+      }
+      layer.state = 'error';
+    }
+    layerErrors[name] = String(message);
+    fatal.style.display = 'block';
+    fatal.textContent = 'Model unavailable: ' + message + ' · other areas still work · try again with the same button';
+    setStatus('Partly loaded', name + ' model unavailable');
+    console.warn('[Living Observatory]', message);
+    publishPreflightState();
+  }
+
   function requestRender() {
     if (app) app.renderNextFrame = true;
   }
@@ -2408,7 +2433,7 @@
   function updateButtons() {
     const view = chassis.getView(currentViewId);
     const exteriorActive = view?.zone === 'exterior';
-    controls.enter.disabled = surveyMode || busy || layers.exterior.state !== 'ready';
+    controls.enter.disabled = surveyMode || busy || !['ready', 'error'].includes(layers.exterior.state);
     controls.space.disabled = surveyMode ? false : busy || (exteriorActive ? layers.exterior.state !== 'ready' || !exteriorShellEntity : layers.furniture.state !== 'ready');
     controls.space.textContent = surveyMode ? 'NEXT SURVEY SPACE' : exteriorActive ? 'NEXT EXTERIOR' : 'NEXT SPACE';
     controls.decor.disabled = surveyMode || busy || layers.furniture.state !== 'ready' || layers.decor.state === 'ready';
@@ -2960,7 +2985,8 @@
   function enqueue(names) {
     names.forEach(name => {
       const layer = layers[name];
-      if (layer && layer.state === 'idle') {
+      if (layer && (layer.state === 'idle' || layer.state === 'error')) {
+        if (layer.state === 'error') { delete layerErrors[name]; if (!Object.keys(layerErrors).length) { fatal.style.display = 'none'; fatal.textContent = ''; } }
         layer.state = 'queued';
         layer.generation = generation;
         queue.push(name);
@@ -2989,8 +3015,7 @@
         pump();
         return;
       }
-      layer.state = 'error';
-      fail(name + ' failed to load: ' + String(err || 'unknown error'));
+      layerFailed(name, name + ' failed to load: ' + String(err || 'unknown error'));
       updateButtons();
       pump();
     };
@@ -3065,8 +3090,7 @@
         .then(() => startAssetLoad(name, layer, expectedGeneration))
         .catch(error => {
           busy = false;
-          layer.state = 'error';
-          fail(name + ' failed to prepare: ' + String(error.message || error));
+          layerFailed(name, name + ' failed to prepare: ' + String(error.message || error));
           updateButtons();
           pump();
         });
@@ -3108,6 +3132,7 @@
     removeATCAccess();
     applyView('exterior-overview', false);
     setStatus('Exterior mode', 'Optional layers released or cancelled · exterior route restored');
+    if (layers.exterior.state === 'error') enqueue(['exterior']); // retry a model that failed earlier
     updateButtons();
   }
 
