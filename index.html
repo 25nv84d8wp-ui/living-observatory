@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <title>The Living Observatory</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/core/version.js"></script>
+</head>
+<body>
+  <canvas id="application" aria-label="The Living Observatory 3-D view"></canvas>
+  <header class="panel"><div id="build-marker"></div><h1>The Living Observatory</h1><div id="status">Starting local engine…</div><div id="detail">Existing kitchen equipment · recognized safe standby · no appliance actuation · Candidate 11.3 protected</div></header>
+  <div id="fatal" class="panel" role="alert"></div>
+  <aside id="phone-panel" class="panel" hidden aria-label="Resident phone">
+    <h2 id="phone-name">Pilot Resident</h2>
+    <p id="phone-needs">Needs unavailable</p>
+    <p id="phone-location">Location unavailable</p>
+    <p id="phone-command">No owner command</p>
+    <p id="phone-goal">Goal unavailable</p>
+    <p id="phone-reason">Reason unavailable</p>
+    <p id="phone-authority">Authority: NONE</p>
+    <p id="phone-action">Action: IDLE</p>
+    <p id="phone-target">Target: NONE</p>
+    <p id="phone-override">Override: NONE</p>
+    <div class="phone-actions">
+      <button id="call-resident">CALL RESIDENT</button>
+      <button id="start-autonomy">START</button>
+      <button id="pause-autonomy">PAUSE</button>
+      <button id="stop-autonomy">STOP / CANCEL</button>
+      <button id="close-phone">CLOSE PHONE</button>
+    </div>
+  </aside>
+  <aside id="media-panel" class="panel" hidden aria-label="Ground media room controls">
+    <h2>Ground Media</h2>
+    <p id="media-status">Display: OFF</p>
+    <p>Local owner controls · no streaming or network dependency</p>
+    <div class="media-actions">
+      <button id="media-off">OFF</button>
+      <button id="media-ambient">AMBIENT</button>
+      <button id="media-cinema">CINEMA</button>
+      <button id="close-media">CLOSE MEDIA</button>
+    </div>
+  </aside>
+  <aside id="suite-panel" class="panel" hidden aria-label="Primary suite controls">
+    <h2>Primary Suite</h2>
+    <p id="suite-status">Scene: REST</p>
+    <p>Local owner scenes · one protected Intelligence Core</p>
+    <div class="suite-actions">
+      <button id="suite-rest">REST</button>
+      <button id="suite-sunrise">SUNRISE</button>
+      <button id="suite-spa">SPA</button>
+      <button id="suite-terrace">TERRACE</button>
+      <button id="close-suite">CLOSE SUITE</button>
+    </div>
+  </aside>
+  <aside id="upper-panel" class="panel" hidden aria-label="Upper wing controls">
+    <h2>Upper Wing</h2>
+    <p id="upper-status">Mode: READ</p>
+    <p>Local owner modes · one protected Intelligence Core</p>
+    <div class="upper-actions">
+      <button id="upper-focus">FOCUS</button>
+      <button id="upper-read">READ</button>
+      <button id="upper-guest">GUEST</button>
+      <button id="upper-night">NIGHT</button>
+      <button id="close-upper">CLOSE UPPER</button>
+    </div>
+  </aside>
+  <aside id="garage-panel" class="panel" hidden aria-label="Garage technology bay controls">
+    <h2>Technology Bay</h2>
+    <p id="garage-status">Mode: DISPLAY</p>
+    <p>Local owner modes · one expandable vehicle shell · no drivetrain</p>
+    <div class="garage-actions">
+      <button id="garage-arrival">ARRIVAL</button>
+      <button id="garage-charge">CHARGE</button>
+      <button id="garage-display">DISPLAY</button>
+      <button id="garage-service">SERVICE</button>
+      <button id="close-garage">CLOSE BAY</button>
+    </div>
+  </aside>
+  <aside id="atc-panel" class="panel" hidden aria-label="Advanced Technology Center status">
+    <h2>Advanced Technology Center</h2>
+    <p id="atc-route-status">Route: awaiting restoration</p>
+    <p id="atc-power-status">Power: awaiting estate runtime</p>
+    <p id="atc-hub-status">Hub: awaiting communications bridge</p>
+    <p id="atc-scientist-01">Scientist 01: status unavailable</p>
+    <p id="atc-scientist-02">Scientist 02: status unavailable</p>
+    <p id="atc-message-status">Orientation 0001-A: status unavailable</p>
+    <p id="atc-email-test-status">Email test: not run</p>
+    <p id="atc-fax-status">Recognition fax: armed once</p>
+    <p id="atc-ding-status">Audible ding: armed once</p>
+    <p id="atc-movement-status">Movement: not checked</p>
+    <div id="atc-fax-notice" hidden><strong>ATC COMMUNICATIONS NOTICE</strong><br>Please inspect this fax notice, then check the computer for your individually addressed email.<br><br>Open <strong>Orientation 0001-A — Initial Professional Orientation</strong>. Use the Communications Familiarization Report to confirm receipt, opening, and answering communications. Email is used for notices, work orders, scientific correspondence, resource requests, reports, and questions.</div>
+    <p>Provisional expandable geometry · protected scientific work area · no teleporter controls</p>
+    <div class="atc-actions">
+      <button id="atc-check-status">CHECK STATUS</button>
+      <button id="atc-run-email-test">RUN EMAIL TEST</button>
+      <button id="atc-issue-fax-ding">ISSUE FAX + DING</button>
+      <button id="atc-call-resident">CALL AVERY HERE</button>
+      <button id="close-atc">CLOSE ATC</button>
+    </div>
+  </aside>
+  <aside id="survey-panel" class="panel" hidden aria-label="Whole-house survey">
+    <h2>Whole-House Survey</h2>
+    <p id="survey-location">Location unavailable</p>
+    <p id="survey-instruction">Drag to pan across the selected floor. Pinch to change distance. Fit Room frames the current space.</p>
+    <div class="survey-actions">
+      <button id="survey-ground">GROUND START</button>
+      <button id="survey-upper">UPPER START</button>
+      <button id="survey-previous">PREVIOUS SPACE</button>
+      <button id="survey-next">NEXT SPACE</button>
+      <button id="survey-close">CLOSE SURVEY</button>
+    </div>
+    <h3 id="survey-level-title">Registered spaces</h3>
+    <ul id="survey-room-list"></ul>
+  </aside>
+  <aside id="system-panel" class="panel" hidden aria-label="House backbone system status">
+    <h2>House Backbone Status</h2>
+    <p id="system-summary">Diagnostic has not run.</p>
+    <dl id="system-results"></dl>
+    <button id="close-system">CLOSE STATUS</button>
+  </aside>
+  <aside id="kitchen-panel" class="panel" hidden aria-label="Chef Kitchen equipment status">
+    <h2>Chef Kitchen Equipment</h2>
+    <p id="kitchen-connection-status">Recognition awaiting furnished-house load.</p>
+    <div id="kitchen-refrigerator-status" class="kitchen-endpoint">Advanced Refrigerator: unavailable</div>
+    <div id="kitchen-oven-status" class="kitchen-endpoint">Flush Double Ovens: unavailable</div>
+    <div id="kitchen-induction-status" class="kitchen-endpoint">Four-Zone Induction + Hood: unavailable</div>
+    <div id="kitchen-projection-status" class="kitchen-endpoint">Island Projection Surface: unavailable</div>
+    <p id="kitchen-authority">Read-only recognition · actuators disabled pending an approved operating contract.</p>
+    <button id="close-kitchen">CLOSE KITCHEN STATUS</button>
+  </aside>
+  <nav class="panel" aria-label="Sanctuary controls">
+    <button id="enter" disabled>ENTER PROPERTY</button>
+    <button id="space" disabled>NEXT SPACE</button>
+    <button id="decor" disabled>LOAD DÉCOR</button>
+    <button id="phone" disabled>PHONE</button>
+    <button id="media" disabled>MEDIA</button>
+    <button id="suite" disabled>SUITE</button>
+    <button id="upper-wing" disabled>UPPER WING</button>
+    <button id="garage" disabled>TECH BAY</button>
+    <button id="atc" disabled>ATC STATUS</button>
+    <button id="survey" disabled>SURVEY HOUSE</button>
+    <button id="system-status">SYSTEM STATUS</button>
+    <button id="kitchen-status" disabled>KITCHEN STATUS</button>
+    <button id="fit-room" disabled>FIT ROOM</button>
+    <button id="exit" disabled>EXIT PROPERTY</button>
+    <button id="reset">RESET VIEW</button>
+  </nav>
+  <!-- PlayCanvas engine 2.21.4 (byte-identical to the copy that was inlined). CDN first, local copy as fallback. -->
+  <script src="https://cdn.jsdelivr.net/npm/playcanvas@2.21.4/build/playcanvas.min.js"></script>
+  <script>window.pc || document.write('<script src="vendor/playcanvas-2.21.4.min.js"><\/script>');</script>
+  <script src="js/core/chassis-manifest.js"></script>
+  <script src="js/storage/core-state.js"></script>
+  <script src="js/residents/pilot-resident.js"></script>
+  <script src="js/residents/autonomous-life.js"></script>
+  <script src="js/residents/intent-arbiter.js"></script>
+  <script src="js/app/main.js"></script>
+</body>
+</html>

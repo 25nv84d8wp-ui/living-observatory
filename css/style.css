@@ -1,0 +1,83 @@
+    :root { color-scheme: dark; font-family: system-ui, -apple-system, sans-serif; }
+    * { box-sizing: border-box; }
+    html, body, #application { width: 100%; height: 100%; margin: 0; overflow: hidden; background: #071015; }
+    #application { touch-action: none; display: block; }
+    .panel { position: fixed; z-index: 2; left: max(12px, env(safe-area-inset-left)); right: max(12px, env(safe-area-inset-right)); padding: 12px; border: 1px solid #6ad8df66; border-radius: 14px; background: #071015dd; backdrop-filter: blur(10px); }
+    header { top: max(12px, env(safe-area-inset-top)); max-width: 520px; right: auto; }
+    h1 { font-size: 17px; margin: 0 0 5px; letter-spacing: .03em; }
+    #build-marker { display: inline-block; margin: 0 0 6px; padding: 3px 7px; border: 1px solid #72f4df; border-radius: 999px; color: #071015; background: #72f4df; font-size: 10px; font-weight: 800; letter-spacing: .08em; }
+    #status { color: #a8f4e8; font-size: 13px; }
+    #detail { color: #b7c6ca; font-size: 11px; margin-top: 4px; }
+    nav { bottom: max(12px, env(safe-area-inset-bottom)); display: flex; gap: 8px; flex-wrap: wrap; }
+    button { flex: 1 1 120px; min-height: 44px; border: 1px solid #6ad8df88; border-radius: 10px; background: #12313a; color: white; font-weight: 650; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+    button:disabled { opacity: .45; }
+    #fatal { display: none; color: #ffd0ca; border-color: #ff7366; }
+    [hidden] { display: none !important; }
+    #phone-panel { top: max(12px, env(safe-area-inset-top)); left: auto; max-width: 320px; }
+    #phone-panel h2 { margin: 0 0 8px; font-size: 16px; }
+    #phone-panel p { margin: 5px 0; color: #c7d7da; font-size: 12px; }
+    #phone-panel .phone-actions { display: flex; gap: 8px; margin-top: 10px; }
+    #media-panel { top: max(12px, env(safe-area-inset-top)); left: auto; max-width: 360px; }
+    #media-panel h2 { margin: 0 0 6px; font-size: 16px; }
+    #media-panel p { margin: 5px 0; color: #c7d7da; font-size: 12px; }
+    .media-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; }
+    .media-actions button { min-width: 0; }
+    #close-media { grid-column: 1 / -1; }
+    #suite-panel { top: max(12px, env(safe-area-inset-top)); left: auto; max-width: 390px; }
+    #suite-panel h2 { margin: 0 0 6px; font-size: 16px; }
+    #suite-panel p { margin: 5px 0; color: #c7d7da; font-size: 12px; }
+    .suite-actions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 10px; }
+    .suite-actions button { min-width: 0; }
+    #close-suite { grid-column: 1 / -1; }
+    #upper-panel { top: max(12px, env(safe-area-inset-top)); left: auto; max-width: 390px; }
+    #upper-panel h2 { margin: 0 0 6px; font-size: 16px; }
+    #upper-panel p { margin: 5px 0; color: #c7d7da; font-size: 12px; }
+    .upper-actions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 10px; }
+    .upper-actions button { min-width: 0; }
+    #close-upper { grid-column: 1 / -1; }
+    #garage-panel { top: max(12px, env(safe-area-inset-top)); left: auto; max-width: 390px; }
+    #garage-panel h2 { margin: 0 0 6px; font-size: 16px; }
+    #garage-panel p { margin: 5px 0; color: #c7d7da; font-size: 12px; }
+    .garage-actions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 10px; }
+    .garage-actions button { min-width: 0; }
+    #close-garage { grid-column: 1 / -1; }
+    #atc-panel { top: max(12px, env(safe-area-inset-top)); left: auto; max-width: 410px; max-height: calc(100vh - 136px); overflow: auto; }
+    #atc-panel h2 { margin: 0 0 6px; font-size: 16px; }
+    #atc-panel p { margin: 5px 0; color: #c7d7da; font-size: 12px; }
+    .atc-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+    .atc-actions button { min-width: 0; }
+    #atc-fax-notice { margin: 9px 0 0; padding: 9px; border: 1px solid #f0b34c88; border-radius: 9px; background: #241707dd; color: #f4e6c8; font-size: 12px; line-height: 1.4; }
+    #atc-fax-notice strong { color: #ffd27a; }
+    #close-atc { grid-column: 1 / -1; }
+    #survey-panel { top: max(12px, env(safe-area-inset-top)); left: auto; max-width: 390px; max-height: calc(100vh - 112px); overflow: auto; }
+    #survey-panel h2 { margin: 0 0 4px; font-size: 16px; }
+    #survey-panel h3 { margin: 12px 0 4px; color: #a8f4e8; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+    #survey-location, #survey-instruction { margin: 5px 0; color: #c7d7da; font-size: 12px; }
+    #survey-room-list { margin: 5px 0 0; padding-left: 18px; color: #b7c6ca; font-size: 11px; line-height: 1.45; }
+    .survey-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+    .survey-actions button { min-width: 0; }
+    #survey-close { grid-column: 1 / -1; }
+    #system-panel { top: max(12px, env(safe-area-inset-top)); left: auto; max-width: 420px; max-height: calc(100vh - 112px); overflow: auto; }
+    #system-panel h2 { margin: 0 0 4px; font-size: 16px; }
+    #system-summary { margin: 4px 0 10px; color: #a8f4e8; font-size: 12px; line-height: 1.4; }
+    #system-results { display: grid; gap: 7px; margin: 0; }
+    .system-row { display: grid; grid-template-columns: minmax(105px, .8fr) minmax(0, 1.8fr); gap: 9px; padding: 7px 0; border-top: 1px solid #6ad8df33; }
+    .system-row dt { margin: 0; color: #e9f8f5; font-size: 11px; font-weight: 750; }
+    .system-row dd { margin: 0; font-size: 11px; line-height: 1.35; }
+    .system-pass { color: #83f0c9; }
+    .system-wait { color: #ffd890; }
+    #close-system { width: 100%; margin-top: 10px; }
+    #kitchen-panel { top: max(12px, env(safe-area-inset-top)); left: auto; max-width: 420px; max-height: calc(100vh - 112px); overflow: auto; }
+    #kitchen-panel h2 { margin: 0 0 4px; font-size: 16px; }
+    #kitchen-connection-status, #kitchen-authority { margin: 5px 0; color: #c7d7da; font-size: 12px; line-height: 1.4; }
+    .kitchen-endpoint { margin: 7px 0; padding: 7px; border: 1px solid #6ad8df33; border-radius: 8px; color: #83f0c9; font-size: 11px; line-height: 1.35; }
+    #close-kitchen { width: 100%; margin-top: 10px; }
+    @media (max-width: 700px) {
+      header { max-width: calc(100% - 24px); }
+      #survey-panel { top: auto; bottom: calc(max(12px, env(safe-area-inset-bottom)) + 114px); max-height: 48vh; max-width: calc(100% - 24px); }
+      #system-panel { top: auto; bottom: calc(max(12px, env(safe-area-inset-bottom)) + 114px); max-height: 55vh; max-width: calc(100% - 24px); }
+      #kitchen-panel { top: auto; bottom: calc(max(12px, env(safe-area-inset-bottom)) + 114px); max-height: 55vh; max-width: calc(100% - 24px); }
+      nav { max-height: 100px; overflow: auto; }
+      button { flex-basis: 105px; }
+    }
+  
