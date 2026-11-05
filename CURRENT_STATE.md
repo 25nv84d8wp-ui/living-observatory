@@ -1,9 +1,10 @@
 # CURRENT STATE: read this first
 
-_Last updated: November 3, 2026_
+_Last updated: November 5, 2026_
 
 ## What's live
 - **Master build: Chef Kitchen Recognition 11.4** (build ID `CHEF-KITCHEN-RECOGNITION-11.4`, parent `HOUSE-BACKBONE-COMMISSIONING-11.3`).
+- Public site: https://25nv84d8wp-ui.github.io/living-observatory/ (HTTP 200 checked Nov 5, 2026 morning America/New_York).
 - It came from the Drive file `OPEN_THIS_LIVING_OBSERVATORY_CHEF_KITCHEN_RECOGNITION_11_4.html`
   (31,465,005 bytes, sha256 `ec7774c3360a184e5f575ad88e3e287298c0f66348efedcf432e699fc7d1279b`, last changed Sept 10, 2026).
 - Commit 1 is that file split into parts with **no behavior changes**. It was checked side by side with the original: same 15 buttons and the same panels, no new errors, and the 3-D house renders.
@@ -16,9 +17,9 @@ _Last updated: November 3, 2026_
 Edit `js/core/version.js` only. Every label, title and build ID reads from there.
 
 ## What's next (in order)
-1. **Merge the ATC route from build 10.1** (`ATC_ACCESS_CONSTRUCTION_10_1`): garage-to-ATC route and access construction.
-2. **Merge North Survey 0.2** (`CANDIDATE_10_0_CHILD_NORTH_BOUNDARY_SURVEY_LAUNCH_0_2`): the NORTH SEARCH three-point camera sweep.
-3. **Merge Welfare / Hub 1.1** (`CANDIDATE_10_0_CHILD_WELFARE_REPAIR_GATE_1_1`): Equipment Room Hub, House-vs-ATC diagnostic, and the ITMO messaging steps 0.4 to 1.1. In that file these are ten patches stacked on top of each other. They should be folded into the main code, not stacked again.
+1. **Phone pass on the live site** (Joseph): confirm ENTER ATC / garage-to-ATC still feel right on a phone. Code already has `E10_1_ATC_ACCESS` (route `garage-ground` → `atc-access-ground` → `atc-ground`, ENTER ATC control). Treat the old "merge ATC 10.1" item as already satisfied in 11.4 unless that phone pass finds a gap vs `ATC_ACCESS_CONSTRUCTION_10_1.html`.
+2. **Merge North Survey 0.2** (`NORTH_BOUNDARY_SURVEY_LAUNCH_0_2` / NORTH SEARCH three-point camera sweep). Not present in `js/app/main.js` yet. Source HTML is in `/workspace/observatory/original/`.
+3. **Merge Welfare / Hub 1.1** (`WELFARE_REPAIR_GATE_1_1`): Equipment Room Hub, House-vs-ATC diagnostic, and the ITMO messaging steps. Not present in main yet. In that file these are ten patches stacked on top of each other. They should be folded into the main code, not stacked again.
 4. Split `js/app/main.js` further: house, ATC, kitchen, panels and loader in separate files.
 
 Do one merge per commit and test on a phone after each.
